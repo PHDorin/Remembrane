@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Membrane</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src='../controllers/terapore.js'></script>
+    <!--link rel="stylesheet" href="../styles/style.css"-->
+  </head>
+  <body ng-app='Terapore'>
+    <div class='info'>
+      <ul>
+        <li><a href = 'addMembrane.html'>Add Membrane</a></li>
+        <li><a href = 'findMembrane.html'>Find Membrane</a></li>
+      </ul>
+      <h1>Add a Membrane</h1>
+      <div id='properties' ng-controller='addMembrane'> 
+        <form ng-submit='addData()'>
+          Membrane Name: <br>
+          <input type='text' name='membraneName' ng-model='data.name'><br><br>
+          Polymer: <br>
+          <input type='text' name='polymer' ng-model='data.polymer'><br><br>
+          Humidity<br>
+          <input type='text' name='humidity' ng-model='data.humidity'>%<br><br> 
+          Flow Through: <br>
+          <input type='text' name='flowThru' ng-model='data.flowThru'>mL/min<br><br>
+          <input type="submit" name='Add Membrane'>
+        </form>
+      </div>
+    </div>
+    <img src = '../assets/logo.png'>
+  </body>
+</html>

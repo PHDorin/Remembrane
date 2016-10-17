@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 
-app.set('views', __dirname + '/Client/views');
+app.set('views', __dirname + '../Client/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 //app.use(express.static(__dirname + '/public'));
