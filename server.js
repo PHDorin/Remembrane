@@ -10,13 +10,9 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname));
 app.use(bodyParser.json())
 
-app.get('/', function(req,res){
-  res.render('signin');
-})
-
-
-
-
+// app.get('/', function(req,res){
+//   res.render('signin');
+// });
 
 
 
