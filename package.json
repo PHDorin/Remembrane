@@ -1,0 +1,28 @@
+{
+  "name": "remembrane",
+  "version": "1.0.0",
+  "description": "membrane database",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PHDorin/Remembrane.git"
+  },
+  "keywords": [
+    "terapore",
+    "membrane",
+    "mvp"
+  ],
+  "author": "philip hanshiro dorin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PHDorin/Remembrane/issues"
+  },
+  "homepage": "https://github.com/PHDorin/Remembrane#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
