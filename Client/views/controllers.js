@@ -1,6 +1,6 @@
 var app = angular.module('Terapore',[]);
 
-app.controller('addMembrane',function($scope, addMembrane){
+app.controller('addMembraneCtrl',function($scope, addMembrane){
   $scope.membranes = [];
   $scope.data = {
     name: '',
@@ -22,7 +22,7 @@ app.controller('addMembrane',function($scope, addMembrane){
 
 app.factory('addMembrane',function($http){
   var newMembrane = function(membrane){
-    return $http.post('api/membranes', membrane).then(function(res){
+    return $http.post('/membranes', membrane).then(function(res){
       console.log(res);
     })
   }
