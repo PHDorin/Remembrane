@@ -7,7 +7,7 @@ var port = process.env.PORT || 3000;
 app.set('views', __dirname + '/Client/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/Client/views'));
 // app.use(bodyParser.json())
 
 app.get('/', function(req,res){
