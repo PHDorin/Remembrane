@@ -22,6 +22,25 @@ app.get('/search',function(req,res){
   res.render('search.html')
 })
 
+// app.post('api/membranes',function(req,res) {
+//   var name = req.body.name;
+//   var polymer = req.body.polymer;
+//   var humidity = req.body.humidity;
+//   var flowThru = req.body.flowThru;
+//   membranes.findOne({name:name}).exec(function(err,results){
+//     if(results){
+//       console.log('there was an error, you cannot have 2 membranes with the same name')
+//     } else {
+//       new membranes({
+//         name:name,
+//         polymer:polymer,
+//         humidity:humidity,
+//         flowThru:flowThru
+//       })
+//     }
+//   })
+// })
+
 
 
 

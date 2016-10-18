@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Add a Membrane</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script src='../controllers/terapore.js'></script>
+
+
     <!--link rel="stylesheet" href="../styles/style.css"-->
   </head>
   <body ng-app='Terapore'>
@@ -25,9 +26,11 @@
           Flow Through: <br>
           <input type='text' name='flowThru' ng-model='data.flowThru'>mL/min<br><br>
           <input type="submit" name='Add Membrane'>
+          {{data.membranes}}
         </form>
       </div>
     </div>
     <img src = '../assets/logo.png'>
+    <script src='./controllers.js'></script>
   </body>
 </html>

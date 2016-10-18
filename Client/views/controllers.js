@@ -8,9 +8,9 @@ app.controller('addMembrane',function($scope, addMembrane){
     humidity: '',
     flowThru: ''
   };
-  var $scope.addData = function(){
+  $scope.addData = function(){
     $scope.membranes.push($scope.data);
-    addMembrane($scope.data)
+    addMembrane.newMembrane($scope.data)
     $scope.data = {
       name: '',
       polymer: '',
@@ -22,8 +22,9 @@ app.controller('addMembrane',function($scope, addMembrane){
 
 app.factory('addMembrane',function($http){
   var newMembrane = function(membrane){
-    return $http.post('api/users', membrane).then(function(res){
+    return $http.post('api/membranes', membrane).then(function(res){
       console.log(res);
     })
   }
+  return { newMembrane:newMembrane }
 });
