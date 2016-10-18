@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-var membranes = require('./Server/mebraneDB.js')
+var membranes = require('./Server/mebraneDB')
 
 app.set('views', __dirname + '/Client/views');
 app.engine('html', require('ejs').renderFile);
@@ -31,24 +31,36 @@ app.get('/search',function(req,res){
 })
 
 app.post('/membranes',function(req,res) {
-  console.log('this is the top of the server post')
-  console.log('****** the request is: ',req.body)
+  console.log('YOU GOT TO THE SERVER!!!!')
   var name = req.body.name;
   var polymer = req.body.polymer;
   var humidity = req.body.humidity;
   var flowThru = req.body.flowThru;
-  membranes.findOne({name:name}).exec(function(err,results){
-    if(results){
-      console.log('there was an error, you cannot have 2 membranes with the same name')
-    } else {
+  //console.log('the membranes database is: ',membranes)
+  // membranes.findOne({name:name}).exec(function(err,results){
+  //   if(err){
+  //     console.log('the post got errored')
+  //   }
+  //   if(results){
+  //     console.log('there was an error, you cannot have 2 membranes with the same name')
+  //   } else {
+      console.log('a new membrane is being created')
       new membranes({
         name:name,
         polymer:polymer,
         humidity:humidity,
         flowThru:flowThru
+      }).save(function(err,data){
+        if(err){
+          console.log(err)
+        } else {
+          console.log(data)
+        }
+      }).then(function(){
+        console.log('you have successfully created or found a membrane from the db')
       })
-    }
-  })
+  //   }
+  // })
 })
 
 
