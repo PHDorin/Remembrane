@@ -13,13 +13,22 @@ app.use(bodyParser.json())
 
 app.get('/', function(req,res){
   res.render('add.html');
-var membranes = require('./Server/mebraneDB.js')
 });
 
 app.get('/membranes', function(req, res) {
-    users.find().exec(function(err, results) {
-      res.status(200).send(results);
-    });
+  var name = req.body.name;
+  var flowThru = req.body.flowThru;
+  console.log('the name and flowThru are: ',name,' - ', flowThru)
+  membranes.find({name:name, flowThru:flowThru}).exec(function(err,results){
+    if(err){
+      console.log('the get errored')
+    }
+    if(results){
+      return results;
+    }
+  }).then(function(){
+    console.log('you have successfully obtained a membrane from the data')
+  })
 });
 
 app.get('/add',function(req,res){
@@ -31,19 +40,18 @@ app.get('/search',function(req,res){
 })
 
 app.post('/membranes',function(req,res) {
-  console.log('YOU GOT TO THE SERVER!!!!')
   var name = req.body.name;
   var polymer = req.body.polymer;
   var humidity = req.body.humidity;
   var flowThru = req.body.flowThru;
-  //console.log('the membranes database is: ',membranes)
-  // membranes.findOne({name:name}).exec(function(err,results){
-  //   if(err){
-  //     console.log('the post got errored')
-  //   }
-  //   if(results){
-  //     console.log('there was an error, you cannot have 2 membranes with the same name')
-  //   } else {
+  console.log('the membranes database is: ',membranes)
+  membranes.findOne({name:name}).exec(function(err,results){
+    if(err){
+      console.log('the post got errored')
+    }
+    if(results){
+      console.log('there was an error, you cannot have 2 membranes with the same name')
+    } else {
       console.log('a new membrane is being created')
       new membranes({
         name:name,
@@ -54,13 +62,13 @@ app.post('/membranes',function(req,res) {
         if(err){
           console.log(err)
         } else {
-          console.log(data)
+          res.send(data);
         }
       }).then(function(){
-        console.log('you have successfully created or found a membrane from the db')
+        console.log('you have successfully created or found a membrane from the data')
       })
-  //   }
-  // })
+    }
+  })
 })
 
 
