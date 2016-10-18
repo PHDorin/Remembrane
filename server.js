@@ -3,17 +3,17 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-var users = require('./Server/userDB.js');
 var membranes = require('./Server/mebraneDB.js')
 
 app.set('views', __dirname + '/Client/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use(express.static(__dirname + '/Client/views'));
-// app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 app.get('/', function(req,res){
-  res.render('signin.html');
+  res.render('add.html');
+var membranes = require('./Server/mebraneDB.js')
 });
 
 app.get('/membranes', function(req, res) {
@@ -31,6 +31,8 @@ app.get('/search',function(req,res){
 })
 
 app.post('/membranes',function(req,res) {
+  console.log('this is the top of the server post')
+  console.log('****** the request is: ',req.body)
   var name = req.body.name;
   var polymer = req.body.polymer;
   var humidity = req.body.humidity;

@@ -12,7 +12,7 @@
     <div class='info'>
       <ul>
         <li><a href = 'addMembrane.html'>Add Membrane</a></li>
-        <li><a href = '#/search'>Find Membrane</a></li>
+        <li><a href = 'findMembrane.html'>Find Membrane</a></li>
       </ul>
       <h1>Add a Membrane</h1>
       <div id='properties' ng-controller='addMembraneCtrl'> 
@@ -25,7 +25,7 @@
           <input type='text' name='humidity' ng-model='data.humidity'>%<br><br> 
           Flow Through: <br>
           <input type='text' name='flowThru' ng-model='data.flowThru'>mL/min<br><br>
-          <input type="submit" name='Add Membrane' method='post'>
+          <input type="submit" name='Add Membrane' method='POST'>
           {{data.membranes}}
         </form>
       </div>

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.createConnection('mongodb://localhost/membranesdb');
+mongoose.createConnection('mongodb://localhost:27017/membranesdb');
 
 var MembraneSchema = new mongoose.Schema({
   name:String,
