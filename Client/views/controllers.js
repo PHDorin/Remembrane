@@ -47,12 +47,16 @@ app.controller('findMembraneCtrl',function($scope, findMembrane){
     findMembrane.findMembrane().then(function(res){
       var displayedBranes = [];
       for(var i = 0; i < res.length;i++){
-        if(res[i].name === $scope.data.name && res[i].flowThru == $scope.data.flowThru){
-          displayedBranes.push(res[i]);
+        //if the name exists
+        if($scope.data.name !== ''){
+          //and the other parameters are not input or match
+          if($scope.data.name === res[i].name && ($scope.data.MW ==res[i].MW || $scope.data.MW == '')&&($scope.data.rejRate == res[i].rejRate || $scope.data.rejRate == '')&&($scope.data.flowThru == res[i].flowThru || $scope.data.flowThru == '')){
+            displayedBranes.push(res[i])
+          }
+        //if no name exists
+        } else if(($scope.data.MW == res[i].MW || $scope.data.MW == '')&&($scope.data.rejRate == res[i].rejRate || $scope.data.rejRate == '')&&($scope.data.flowThru == res[i].flowThru || $scope.data.flowThru == '')){
+          displayedBranes.push(res[i])
         }
-      }
-      if(displayedBranes.length < 1){
-        displayedBranes = 'no membrane found'
       }
       $scope.display = displayedBranes
       $scope.data = {
