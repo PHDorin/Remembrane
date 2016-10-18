@@ -19,12 +19,13 @@ app.get('/membranes', function(req, res) {
   var name = req.body.name;
   var flowThru = req.body.flowThru;
   console.log('the name and flowThru are: ',name,' - ', flowThru)
-  membranes.find({name:name, flowThru:flowThru}).exec(function(err,results){
+  membranes.find().exec(function(err,results){
     if(err){
       console.log('the get errored')
     }
     if(results){
-      return results;
+      console.log('the results are returning in the server get request: ',results)
+      res.send(results);
     }
   }).then(function(){
     console.log('you have successfully obtained a membrane from the data')
@@ -40,6 +41,7 @@ app.get('/search',function(req,res){
 })
 
 app.post('/membranes',function(req,res) {
+  console.log('the get request is: ',req)
   var name = req.body.name;
   var polymer = req.body.polymer;
   var humidity = req.body.humidity;

@@ -41,9 +41,8 @@ app.controller('findMembraneCtrl',function($scope, findMembrane){
   $scope.findData = function(){
     console.log('the $scope.data is: ',$scope.data)
     console.log('this is in the finding controller')
-    findMembrane.findMembrane($scope.data).then(function(res){
-      console.log(res.data)
-      $scope.display = res.data
+    findMembrane.findMembrane().then(function(res){
+      $scope.display = res
     })
 
     $scope.data = {
@@ -54,11 +53,14 @@ app.controller('findMembraneCtrl',function($scope, findMembrane){
 });
 
 app.factory('findMembrane',function($http){
-  var findMembrane = function(){
+  var findMembrane = function(membrane){
     return $http({
       method: 'GET',
       url:'/membranes',
-      //data: membrane
+      // data: membrane
+    }).then(function(resp){
+      console.log('the response to the client is',resp)
+      return resp.data;
     })
   }
   return { findMembrane:findMembrane }
