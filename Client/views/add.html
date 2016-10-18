@@ -15,16 +15,22 @@
       <h1>Add a Membrane</h1>
       <div id='properties' ng-controller='addMembraneCtrl'> 
         <form ng-submit='addData()'>
-          Membrane Name: <br>
+          <b><u>Membrane Name:</u></b><br>
           <input type='text' name='membraneName' ng-model='data.name'><br><br>
+          <b><u>Inputs:</u></b><br>
           Polymer: <br>
           <input type='text' name='polymer' ng-model='data.polymer'><br><br>
           Humidity<br>
           <input type='text' name='humidity' ng-model='data.humidity'>%<br><br> 
+          <b><u>Outcomes:</u></b><br>
+          Molecular Weight Cutoff: <br>
+          <input type='text' name='MWReject' ng-model='data.MW'>kDa<br><br>
+          Rejection: <br>
+          <input type='text' name='rejectionRate' ng-model='data.rejRate'>%<br><br>
           Flow Through: <br>
           <input type='text' name='flowThru' ng-model='data.flowThru'>mL/min<br><br>
           <input type="submit" name='Add Membrane' method='POST'>
-          {{data.membranes}}
+          {{data.s}}
         </form>
       </div>
     </div>

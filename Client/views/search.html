@@ -22,11 +22,34 @@
           <input type='text' name='polymer' ng-model='data.polymer'><br><br>
           Humidity<br>
           <input type='text' name='humidity' ng-model='data.humidity'>%<br><br--> 
+          Molecular Weight Cutoff: <br>
+          <input type='text' name='MWReject' ng-model='data.MW'>kDa<br><br>
+          Rejection: <br>
+          <input type='text' name='rejectionRate' ng-model='data.rejRate'>%<br><br>
           Flow Through: <br>
           <input type='text' name='flowThru' ng-model='data.flowThru'>mL/min<br><br>
           <input type="submit" name='Find Membrane'><br><br>
-          {{display}}
         </form>
+        <div>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Polymer</th>
+              <th>Humidity</th>
+              <th>Rejection Weight</th>
+              <th>Rejection Percentage</th>
+              <th>Flow Velocity</th>
+            </tr>
+            <tr ng-repeat='membrane in display track by $index'>
+              <td>{{membrane.name}}</td>
+              <td>{{membrane.polymer}}</td>
+              <td>{{membrane.humidity}}</td>
+              <td>{{membrane.MW}}</td>
+              <td>{{membrane.rejRate}}</td>
+              <td>{{membrane.flowThru}}</td>
+            </tr>
+            </table>
+          </div>
       </div>
     </div>
     <img src = './assets/logo.png'>

@@ -6,6 +6,8 @@ var MembraneSchema = new mongoose.Schema({
   name:String,
   polymer:String,
   humidity:String,
+  MW:Number,
+  rejRate:Number,
   flowThru:Number
 });
 

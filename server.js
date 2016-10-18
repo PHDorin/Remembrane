@@ -16,15 +16,11 @@ app.get('/', function(req,res){
 });
 
 app.get('/membranes', function(req, res) {
-  var name = req.body.name;
-  var flowThru = req.body.flowThru;
-  console.log('the name and flowThru are: ',name,' - ', flowThru)
   membranes.find().exec(function(err,results){
     if(err){
       console.log('the get errored')
     }
     if(results){
-      console.log('the results are returning in the server get request: ',results)
       res.send(results);
     }
   }).then(function(){
@@ -45,6 +41,8 @@ app.post('/membranes',function(req,res) {
   var name = req.body.name;
   var polymer = req.body.polymer;
   var humidity = req.body.humidity;
+  var MW = req.body.MW;
+  var rejRate = req.body.rejRate;
   var flowThru = req.body.flowThru;
   console.log('the membranes database is: ',membranes)
   membranes.findOne({name:name}).exec(function(err,results){
@@ -59,6 +57,8 @@ app.post('/membranes',function(req,res) {
         name:name,
         polymer:polymer,
         humidity:humidity,
+        MW:MW,
+        rejRate:rejRate,
         flowThru:flowThru
       }).save(function(err,data){
         if(err){
@@ -66,8 +66,6 @@ app.post('/membranes',function(req,res) {
         } else {
           res.send(data);
         }
-      }).then(function(){
-        console.log('you have successfully created or found a membrane from the data')
       })
     }
   })

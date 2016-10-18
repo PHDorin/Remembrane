@@ -5,15 +5,19 @@ app.controller('addMembraneCtrl',function($scope, addMembrane){
     name: '',
     polymer: '',
     humidity: '',
+    MW:'',
+    rejRate:'',
     flowThru: ''
   };
   $scope.addData = function(){
     addMembrane.newMembrane($scope.data)
     $scope.data = {
-      name: '',
-      polymer: '',
-      humidity: '',
-      flowThru: ''
+    name: '',
+    polymer: '',
+    humidity: '',
+    MW:'',
+    rejRate:'',
+    flowThru: ''
     };
   }
 });
@@ -25,7 +29,6 @@ app.factory('addMembrane',function($http){
       url:'/membranes',
       data:membrane
     }).then(function(resp){
-      console.log('this is in the factory')
       return resp.data
     })
   }
@@ -36,24 +39,34 @@ app.controller('findMembraneCtrl',function($scope, findMembrane){
   $scope.display = 'your membranes await...'
   $scope.data = {
     name: '',
+    MW:'',
+    rejRate:'',
     flowThru: ''
   };
   $scope.findData = function(){
-    console.log('the $scope.data is: ',$scope.data)
-    console.log('this is in the finding controller')
     findMembrane.findMembrane().then(function(res){
-      $scope.display = res
+      var displayedBranes = [];
+      for(var i = 0; i < res.length;i++){
+        if(res[i].name === $scope.data.name && res[i].flowThru == $scope.data.flowThru){
+          displayedBranes.push(res[i]);
+        }
+      }
+      if(displayedBranes.length < 1){
+        displayedBranes = 'no membrane found'
+      }
+      $scope.display = displayedBranes
+      $scope.data = {
+        name: '',
+        MW:'',
+        rejRate:'',
+        flowThru: ''
+      }
     })
-
-    $scope.data = {
-      name: '',
-      flowThru: ''
-    };
   }
 });
 
 app.factory('findMembrane',function($http){
-  var findMembrane = function(membrane){
+  var findMembrane = function(){
     return $http({
       method: 'GET',
       url:'/membranes',
